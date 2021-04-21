@@ -1,10 +1,10 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from "react";
 import { Container, Box, Heading, Card, Image, Text, Spinner } from "gestalt";
-import "./App.css";
-import Strapi from "strapi-sdk-javascript/build/main";
 import { Link } from "react-router-dom";
 
+import "./App.css";
+import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 
@@ -32,7 +32,6 @@ class App extends Component {
       });
 
       this.setState({ brands: response.data.brands, loadingBrands: false });
-      console.log(this.state.brands);
     } catch (err) {
       console.error(err);
       this.setState({ loadingBrands: false });
@@ -52,9 +51,9 @@ class App extends Component {
         </Box>
 
         {/* Actual Brands */}
-        <Box display="flex" justifyContent="around">
+        <Box wrap display="flex" justifyContent="around">
           {brands.map((brand) => (
-            <Box wrap margin={2} width={200} key={brand._id}>
+            <Box margin={2} width={200} key={brand._id}>
               <Link to={`/${brand._id}`}>
                 <Card
                   image={
